@@ -18,14 +18,16 @@ public class HostedService : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation($"{nameof(HostedService)} has started.");
-
         AppDomain.MonitoringIsEnabled = true;
 
         Console.Write("Root folder path: ");
 
         var rootPath = Console.ReadLine();
-        Console.Write($"Root folder path: {rootPath}");
+        
+        Console.Clear();
+
+        _logger.LogInformation($"{nameof(HostedService)} has started.");
+        _logger.LogInformation("Root folder path: {rootPath}", rootPath);
 
         if (rootPath == null)
             throw new ArgumentNullException(nameof(rootPath), "Path cannot be empty.");
